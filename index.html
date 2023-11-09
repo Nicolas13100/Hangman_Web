@@ -1,0 +1,22 @@
+{{define "index"}}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="vewport" content="width=devide-width, initital-scale=1.0">
+        <title>Informations sur la promotion</title>
+    </head>
+    <body>
+        <h2>{{.Titre}}</h2>
+        <p>Nom : {{.Nom}}</p>
+        <p>Filière : {{.Filière}}</p>
+        <p>Niveau : {{.Niveau}}</p>
+        <p>Nombre d'étudiants : {{.Nb}}</p>
+        <h2>Liste des étudiants</h2>
+        {{range .Tableau}}
+        <p>{{.}}</p>
+        {{end}}
+    </body>
+</html>
+{{end}}
