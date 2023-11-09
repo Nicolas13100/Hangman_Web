@@ -13,6 +13,10 @@
         <p>Filière : {{.Filière}}</p>
         <p>Niveau : {{.Niveau}}</p>
         <p>Nombre d'étudiants : {{.Nbétudiants}}</p>
+        <h2>{{.Titre}}</h2>
+        {{range .Users}}
+        <p>{{.FirstName}} {{.Lastname}}{{.Age}}{{.Sex}}</p>
+        {{end}}
     </body>
 </html>
 {{end}}
