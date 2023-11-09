@@ -17,15 +17,17 @@
         <h2>{{.TitreUsers}}</h2>
         {{range .CurrentPromo.Users}}
         <div class="liste">
-        <div class="Nom">{{.FirstName}} {{.LastName}}</div>
-        <div class="Age">{{.Age}}</div>
+                <div class="info">
+                    <div class="Nom">{{.FirstName}} {{.LastName}}</div>
+                    <div class="Age">{{.Age}}</div>
+            </div>
         <div class="Sex">
-            {{if eq .Sex "Male"}}
+            {{if eq .Sex "Homme"}}
                 <img src="/static/Homme.png" alt="Male">
-            {{else if eq .Sex "Female"}}
+            {{else if eq .Sex "Femme"}}
                 <img src="/static/Femme.png" alt="Female">
             {{else}}
-                <img src="/static/Other.png" alt="Unknown">
+                <img src="/static/Autre.jpg" alt="Unknown">
             {{end}}
             </div>
         </div>

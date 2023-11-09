@@ -3,26 +3,40 @@ body {
     
 }
 
-span{
-    font-weight: bold;
-
+p{
+    margin-left: 10px;
 }
 
-.liste{
+span{
+    font-weight: bold;
+}
+
+.liste {
     display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    border-radius: 5%;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 10px;
     padding: 10px;
     margin: 10px;
-    max-width: 50%;
-    position: relative; /* Add this line to make it a positioned container */
+    max-height: 50px;
+    max-width: 400px;
+    position: relative;
+    justify-content: space-between; /* Keep this line */
+    
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .Sex {
-    position: absolute;
-    right: 0;
-    transform: translateX(50%);
-    top: 50%;
-    transform: translateY(-50%);
+    max-width: 20%;
+    align-self: center; /* This aligns the image vertically in the middle */
+    margin-left: auto; /* This pushes the image to the right */
+}
+.Sex img {
+    max-width: 100%;
+    height: auto;
 }

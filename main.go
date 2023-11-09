@@ -28,10 +28,16 @@ type DonneesPromo struct {
 	TitreUsers   string
 }
 
+type ChangeData struct {
+	Titre   string
+	Message string
+	Nombre  int
+}
+
+var Nb int
+
 func main() {
-	rootDoc, _ := os.Getwd()
-	fileserver := http.FileServer(http.Dir(rootDoc))
-	http.Handle("/static/", http.StripPrefix("/static/", fileserver))
+
 	temp, err := template.ParseGlob("*.html")
 
 	if err != nil {
@@ -60,5 +66,30 @@ func main() {
 		temp.ExecuteTemplate(w, "promo", data)
 	})
 
+	http.HandleFunc("/change", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("received request for /change")
+		Nb++
+		var message string
+		if Nb%2 == 0 && Nb <= 9 {
+			message = "Le chiffre est pair"
+		} else if Nb%2 == 0 && Nb >= 10 {
+			message = "Le nombre est pair"
+		} else if Nb%2 != 0 && Nb <= 9 {
+			message = " Le nombre est impaire"
+		} else if Nb%2 != 0 && Nb >= 10 {
+			message = " Le nombre est impaire"
+		}
+
+		dataChange := ChangeData{
+			Titre:   "Change",
+			Message: message,
+			Nombre:  Nb,
+		}
+		temp.ExecuteTemplate(w, "change", dataChange)
+	})
+
+	rootDoc, _ := os.Getwd()
+	fileserver := http.FileServer(http.Dir(rootDoc))
+	http.Handle("/static/", http.StripPrefix("/static/", fileserver))
 	http.ListenAndServe(":8080", nil)
 }
