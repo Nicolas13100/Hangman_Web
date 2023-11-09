@@ -1,4 +1,4 @@
-{{define "change"}}
+{{define "display"}}
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -6,13 +6,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="vewport" content="width=devide-width, initital-scale=1.0">
         <link rel="stylesheet" href="/static/styles.css">
-        <title>{{.Titre}}</title>
+        <title>Perso data</title>
     </head>
     <body>
      <div class="Pourtour">
         <div class="Border">
-        <div class="Message">{{.Message}}</div>
-        <div class="Nombre">{{.Nombre}}</div> 
+        <h1>Vos données personnelles</h1>
+        <div class="displayUser">
+        <p>Nom</p>
+        <p>{{.Nom}}</p>
+        <p>Prénom</p>
+        <p>{{.Prenom}}</p>
+        <p>Date d'anniversaire</p>
+        <p>{{.Bday}}</p>
+        <p>Sexe</p>
+        <p>{{.Gender}}</p>
+    </div>
      </div>  
     </div>
     </body>

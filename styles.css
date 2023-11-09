@@ -1,9 +1,14 @@
 body {
     font-family:Arial, sans-serif;
-    
+   
 }
 
-p{
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.infoPromo p{
     margin-left: 10px;
 }
 
@@ -39,4 +44,37 @@ span{
 .Sex img {
     max-width: 100%;
     height: auto;
+}
+
+.Pourtour{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: gray;
+}
+
+.Border{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding:2%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.displayUser {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.displayUser p {
+    margin: 5px 0;
+}
+
+.Border h1{
+    margin-bottom: 15px;
 }

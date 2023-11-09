@@ -36,6 +36,15 @@ type ChangeData struct {
 
 var Nb int
 
+type UserData struct {
+	Nom    string
+	Prenom string
+	Bday   string
+	Gender string
+}
+
+var myUser UserData
+
 func main() {
 
 	temp, err := template.ParseGlob("*.html")
@@ -46,7 +55,7 @@ func main() {
 	}
 
 	http.HandleFunc("/promo", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("received request for /promo")
+
 		promo := Promotion{
 			Titre:   "Information sur la promotion",
 			Nom:     "Mentor'ac",
@@ -67,17 +76,20 @@ func main() {
 	})
 
 	http.HandleFunc("/change", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("received request for /change")
+
 		Nb++
+
 		var message string
 		if Nb%2 == 0 && Nb <= 9 {
 			message = "Le chiffre est pair"
+		} else if Nb == 0 {
+			message = "Le chiffre est 0"
 		} else if Nb%2 == 0 && Nb >= 10 {
 			message = "Le nombre est pair"
 		} else if Nb%2 != 0 && Nb <= 9 {
-			message = " Le nombre est impaire"
+			message = " Le chiffre est impair"
 		} else if Nb%2 != 0 && Nb >= 10 {
-			message = " Le nombre est impaire"
+			message = " Le nombre est impair"
 		}
 
 		dataChange := ChangeData{
@@ -86,6 +98,33 @@ func main() {
 			Nombre:  Nb,
 		}
 		temp.ExecuteTemplate(w, "change", dataChange)
+	})
+	http.HandleFunc("/user/init", func(w http.ResponseWriter, r *http.Request) {
+		temp.ExecuteTemplate(w, "init", nil)
+	})
+
+	http.HandleFunc("/user/treatment", func(w http.ResponseWriter, r *http.Request) {
+		var gender string
+		switch r.FormValue("gender") {
+		case "homme":
+			gender = "m"
+		case "femme":
+			gender = "f"
+		case "autre":
+			gender = "Poney Magique"
+		}
+
+		myUser = UserData{
+			Nom:    r.FormValue("nom"),
+			Prenom: r.FormValue("prenom"),
+			Bday:   r.FormValue("bday"),
+			Gender: gender,
+		}
+		http.Redirect(w, r, "/user/display", 301)
+	})
+
+	http.HandleFunc("/user/display", func(w http.ResponseWriter, r *http.Request) {
+		temp.ExecuteTemplate(w, "display", myUser)
 	})
 
 	rootDoc, _ := os.Getwd()

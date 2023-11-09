@@ -1,0 +1,35 @@
+{{define "init"}}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="vewport" content="width=devide-width, initital-scale=1.0">
+        <link rel="stylesheet" href="/static/styles.css">
+        <title>Inscription User</title>
+    </head>
+    <body>
+     <div class="Pourtour">
+        <div class="Border">
+            <h1>Renseigner vos données</h1>
+        <form action="/user/treatment" method="post" class="formul">
+<label for="nom">Nom</label>
+<input type="text" name="nom" id="nom" placeholder="Votre nom" >
+<label for="prenom">Prénom</label>
+<input type="text" name="prenom" id="prenom" placeholder="Votre prénom">
+<label for="bday">Date d'anniversaire</label>
+<input type="date" name="bday" id="bday" placeholder="JJ/MM/AAAA">
+<label for="gender">Sexe</label>
+<select name="gender" id="gender">
+    <option value="homme">Homme</option>
+    <option value="femme">Femme</option>
+    <option value="autre">Unicorne</option>
+</select>
+<button type="submit">Valider</button>
+        </form>
+        
+     </div>  
+    </div>
+    </body>
+</html>
+{{end}}

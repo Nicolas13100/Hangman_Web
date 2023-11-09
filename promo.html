@@ -10,10 +10,12 @@
     </head>
     <body>
         <h2>{{.CurrentPromo.Titre}}</h2>
+    <div class="infoPromo">
         <p><span>Nom : </span>{{.CurrentPromo.Nom}}</p>
         <p><span>Filière : </span>{{.CurrentPromo.Filière}}</p>
         <p><span>Niveau : </span>{{.CurrentPromo.Niveau}}</p>
         <p><span>Nombre d'étudiants : </span>{{.NbUsers}}</p>
+    </div>
         <h2>{{.TitreUsers}}</h2>
         {{range .CurrentPromo.Users}}
         <div class="liste">
