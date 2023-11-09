@@ -5,6 +5,7 @@ body {
 
 span{
     font-weight: bold;
+
 }
 
 .liste{
@@ -12,11 +13,16 @@ span{
     flex-direction: column;
     border: 1px solid black;
     border-radius: 5%;
-    padding-left: 10px;
+    padding: 10px;
     margin: 10px;
     max-width: 50%;
+    position: relative; /* Add this line to make it a positioned container */
 }
 
-.sex{
-    justify-content: end;
+.Sex {
+    position: absolute;
+    right: 0;
+    transform: translateX(50%);
+    top: 50%;
+    transform: translateY(-50%);
 }

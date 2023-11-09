@@ -29,10 +29,13 @@ type DonneesPromo struct {
 }
 
 func main() {
+	rootDoc, _ := os.Getwd()
+	fileserver := http.FileServer(http.Dir(rootDoc))
+	http.Handle("/static/", http.StripPrefix("/static/", fileserver))
 	temp, err := template.ParseGlob("*.html")
 
 	if err != nil {
-		fmt.Println(fmt.Sprint("ERREUR=> %s", err.Error()))
+		fmt.Println(fmt.Sprintf("ERREUR=> %s", err.Error()))
 		os.Exit(1)
 	}
 
@@ -56,10 +59,6 @@ func main() {
 		}
 		temp.ExecuteTemplate(w, "promo", data)
 	})
-
-	rootDoc, _ := os.Getwd()
-	fileserver := http.FileServer(http.Dir(rootDoc))
-	http.Handle("/static/", http.StripPrefix("/static/", fileserver))
 
 	http.ListenAndServe(":8080", nil)
 }
