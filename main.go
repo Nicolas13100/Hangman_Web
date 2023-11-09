@@ -22,16 +22,17 @@ type Etudiant struct {
 }
 
 func main() {
-	temp, err := template.ParseGlob("*html")
+	temp, err := template.ParseGlob("*.html")
+
 	if err != nil {
 		fmt.Println(fmt.Sprint("ERREUR=> %s", err.Error()))
+		return
 	}
 
 	http.HandleFunc("/promo", func(w http.ResponseWriter, r *http.Request) {
 		data := Promotion{"Information sur la promotion",
 			"Mentor'ac", "Informatique", 5, 3}
 		temp.ExecuteTemplate(w, "promo", data)
-		w.Write([]byte(""))
 	})
-	http.ListenAndServe("localhost :8080", nil)
+	http.ListenAndServe(": 8080", nil)
 }
