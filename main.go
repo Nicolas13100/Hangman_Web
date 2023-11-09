@@ -9,9 +9,9 @@ import (
 type Promotion struct {
 	Titre       string
 	Nom         string
-	Filièe      string
+	Filière     string
 	Niveau      int
-	Nbétuduants int
+	Nbétudiants int
 }
 
 type Etudiant struct {
@@ -30,9 +30,15 @@ func main() {
 	}
 
 	http.HandleFunc("/promo", func(w http.ResponseWriter, r *http.Request) {
-		data := Promotion{"Information sur la promotion",
-			"Mentor'ac", "Informatique", 5, 3}
+		fmt.Println("recived request for /promo")
+		data := Promotion{
+			Titre:       "Information sur la promotion",
+			Nom:         "Mentor'ac",
+			Filière:     "Informatique",
+			Niveau:      5,
+			Nbétudiants: 3,
+		}
 		temp.ExecuteTemplate(w, "promo", data)
 	})
-	http.ListenAndServe(": 8080", nil)
+	http.ListenAndServe(":8080", nil)
 }
