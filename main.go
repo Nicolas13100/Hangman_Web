@@ -47,7 +47,7 @@ var myUser UserData
 
 func main() {
 
-	temp, err := template.ParseGlob("*.html")
+	temp, err := template.ParseGlob("Assets/*.html")
 
 	if err != nil {
 		fmt.Println(fmt.Sprintf("ERREUR=> %s", err.Error()))
@@ -128,7 +128,7 @@ func main() {
 	})
 
 	rootDoc, _ := os.Getwd()
-	fileserver := http.FileServer(http.Dir(rootDoc))
+	fileserver := http.FileServer(http.Dir(rootDoc + "/Assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileserver))
 	http.ListenAndServe(":8080", nil)
 }
