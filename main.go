@@ -111,7 +111,7 @@ func main() {
 			gender = "m"
 		case "femme":
 			gender = "f"
-		case "autre":
+		default:
 			gender = "Poney Magique"
 		}
 		invertedDate, err := invertDate(r.FormValue("bday"))
