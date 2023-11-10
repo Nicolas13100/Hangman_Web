@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"os"
+	"time"
 )
 
 type Promotion struct {
@@ -113,11 +114,15 @@ func main() {
 		case "autre":
 			gender = "Poney Magique"
 		}
-
+		invertedDate, err := invertDate(r.FormValue("bday"))
+		if err != nil {
+			http.Error(w, "Error inverting date", http.StatusBadRequest)
+			return
+		}
 		myUser = UserData{
 			Nom:    r.FormValue("nom"),
 			Prenom: r.FormValue("prenom"),
-			Bday:   r.FormValue("bday"),
+			Bday:   invertedDate,
 			Gender: gender,
 		}
 		http.Redirect(w, r, "/user/display", 301)
@@ -131,4 +136,17 @@ func main() {
 	fileserver := http.FileServer(http.Dir(rootDoc + "/Assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileserver))
 	http.ListenAndServe(":8080", nil)
+}
+
+func invertDate(dateString string) (string, error) {
+	// Analyser la date dans le format "YYYY-MM-DD"
+	t, err := time.Parse("2006-01-02", dateString)
+	if err != nil {
+		return "", err
+	}
+
+	// Formater la date dans le format "DD-MM-YYYY"
+	invertedDate := t.Format("02-01-2006")
+
+	return invertedDate, nil
 }

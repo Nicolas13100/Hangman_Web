@@ -78,3 +78,24 @@ span{
 .Border h1{
     margin-bottom: 15px;
 }
+
+.formul {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.label{
+   font-weight: bold;
+}
+
+.formul input{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form button{
+    margin-top: 15px;
+}
